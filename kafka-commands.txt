@@ -1,0 +1,21 @@
+
+
+Starting ZooKeeper
+----------------------
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+Starting Kafka Server
+--------------------
+bin\windows\kafka-server-start.bat config\server.properties
+
+Strating producer console
+------------------------
+bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic centTopic
+
+starting consumer console
+-------------------------
+bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic SensorTopic 
+
+Create Topic
+-------------
+bin\windows\kafka-topics.bat --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 10 --topic SensorTopic
