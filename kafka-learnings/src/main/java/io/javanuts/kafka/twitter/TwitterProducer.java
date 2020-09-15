@@ -27,10 +27,10 @@ import com.twitter.hbc.httpclient.auth.OAuth1;
 public class TwitterProducer {
 
 	Logger logger = LoggerFactory.getLogger(TwitterProducer.class.getName()); 
-	private final String consumerKey = "HSv3cTbgC2buPk2qcIut6RJKm";
-	private final String consumerSecret = "Wf0VeeWuKqvWg9LDC5hSRTc1LuVgId8rbhSXry3xbaKdl8i19H";
-	private final String token = "752184488931659776-ZFduH7IeUBUXUQZtnH7mgFV22FiBz6d";
-	private final String secret = "yMI0uiMOCe0n6KSsnIJFlKxa3olbqlhfiu50QTUTfH6O3";
+	private final String consumerKey = "consumerKey";
+	private final String consumerSecret = "consumerSecret";
+	private final String token = "token";
+	private final String secret = "secret";
 
 	public static void main(String[] args) {
 		new TwitterProducer().run();
