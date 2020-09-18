@@ -92,7 +92,20 @@ public class TwitterProducer {
 	        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092");
 	        properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 	        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
-
+	        
+	        // Creating Safe Producer
+	        properties.setProperty(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
+	        
+	        // by default the below properties will be set to producer when idempotence is enabled
+	        properties.setProperty(ProducerConfig.ACKS_CONFIG,"all");
+	        properties.setProperty(ProducerConfig.RETRIES_CONFIG, Integer.toString(Integer.MAX_VALUE) );
+	        properties.setProperty(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
+	        
+	        // Create high throughput producer at the cost of some latency and CPU cycles
+	        properties.setProperty(ProducerConfig.COMPRESSION_TYPE_CONFIG,"snappy");
+	        properties.setProperty(ProducerConfig.LINGER_MS_CONFIG, "20");
+	        properties.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, Integer.toString(32*1024));
+	        
 	        // create kafka producer
 	        KafkaProducer<String,String> producer = new KafkaProducer<String, String>(properties);
 		return producer;
@@ -109,7 +122,7 @@ public class TwitterProducer {
 		StatusesFilterEndpoint hosebirdEndpoint = new StatusesFilterEndpoint();
 		// Optional: set up some followings and track terms
 
-		List<String> terms = Lists.newArrayList("kafka");
+		List<String> terms = Lists.newArrayList("kafka","ipl","india");
 
 		hosebirdEndpoint.trackTerms(terms);
 

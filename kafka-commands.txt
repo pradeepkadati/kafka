@@ -2,11 +2,11 @@
 
 Starting ZooKeeper
 ----------------------
-bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+bin/zookeeper-server-start.sh config/zookeeper.properties
 
 Starting Kafka Server
 --------------------
-bin\windows\kafka-server-start.bat config\server.properties
+bin/kafka-server-start.sh config/server.properties
 
 Strating producer console
 ------------------------
@@ -15,6 +15,8 @@ bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic cent
 starting consumer console
 -------------------------
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic SensorTopic 
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic twitter_tweets 
 
 Create Topic
 -------------
