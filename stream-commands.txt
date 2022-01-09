@@ -1,0 +1,14 @@
+Create Topic
+--------------
+bin\windows\kafka-topics.bat --create --partitions 1 --replication-factor 1 --topic streams-plaintext-input --bootstrap-server localhost:9092
+bin\windows\kafka-topics.bat --create --partitions 1 --replication-factor 1 --topic streams-wordcount-output --bootstrap-server localhost:9092
+
+Start Producer
+---------------
+bin\windows\kafka-console-producer.bat --topic streams-plaintext-input --bootstrap-server localhost:9092
+
+
+Start Consumer
+---------------
+bin\windows\kafka-console-consumer.bat --topic streams-wordcount-output --from-beginning --bootstrap-server localhost:9092  --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+

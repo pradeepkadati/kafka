@@ -4,19 +4,38 @@ Starting ZooKeeper
 ----------------------
 bin/zookeeper-server-start.sh config/zookeeper.properties
 
+bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
 Starting Kafka Server
 --------------------
 bin/kafka-server-start.sh config/server.properties
 
+bin\windows\kafka-server-start.bat config\server.properties
+
+create topic
+------------------------
+bin\windows\kafka-topics.bat --create --partitions 1 --replication-factor 1 --topic quickstart-events --bootstrap-server localhost:9092
+
+bin\windows\kafka-topics.bat --create --partitions 1 --replication-factor 1 --topic streams-plaintext-input --bootstrap-server localhost:9092
+bin\windows\kafka-topics.bat --create --partitions 1 --replication-factor 1 --topic streams-wordcount-output --bootstrap-server localhost:9092
+
 Strating producer console
 ------------------------
 bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic centTopic
+
+bin\windows\kafka-console-producer.bat --topic quickstart-events --bootstrap-server localhost:9092
+
+bin\windows\kafka-console-producer.bat --topic streams-plaintext-input --bootstrap-server localhost:9092 
 
 starting consumer console
 -------------------------
 bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic SensorTopic 
 
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic twitter_tweets 
+
+bin\windows\kafka-console-consumer.bat --topic quickstart-events --from-beginning --bootstrap-server localhost:9092
+
+bin\windows\kafka-console-consumer.bat --topic streams-wordcount-output --from-beginning --bootstrap-server localhost:9092
 
 Create Topic
 -------------
